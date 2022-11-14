@@ -119,8 +119,9 @@ def read_package(workout_type: str, data: list) -> Training:
     training_code: Dict[str, Type[Training]] = {
         'SWM': Swimming,
         'RUN': Running,
-        'WLK': SportsWalking
-        }
+        'WLK': SportsWalking}
+
+
     if training_code.get(workout_type) is None:
         raise KeyError('данные не получены')
     readdat = training_code.get(workout_type)(*data)
