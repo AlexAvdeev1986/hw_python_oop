@@ -27,7 +27,6 @@ class Training:
     LEN_STEP: float = 0.65
     M_IN_KM: int = 1000
     MIN_IN_H: int = 60
-    control_workout: bool
 
     def __init__(self, action: int, duration: float, weight: float) -> None:
         self.action = action
@@ -120,8 +119,12 @@ def read_package(workout_type: str, data: list) -> Training:
     training_code: Dict[str, Type[Training]] = {
         'SWM': Swimming,
         'RUN': Running,
-        'WLK': SportsWalking}
-    return training_code[workout_type](*data)
+        'WLK': SportsWalking
+        }
+    if training_code.get(workout_type) is None:
+        raise KeyError('данные не получены')
+    readdat = training_code.get(workout_type)(*data)
+    return readdat
 
 
 def main(training: Training) -> None:
