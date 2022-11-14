@@ -121,7 +121,6 @@ def read_package(workout_type: str, data: list) -> Training:
         'RUN': Running,
         'WLK': SportsWalking}
 
-
     if training_code.get(workout_type) is None:
         raise KeyError('данные не получены')
     readdat = training_code.get(workout_type)(*data)
